@@ -145,4 +145,54 @@
     //'db.<name of collection>.find().pretty()'
         //Outputs all the data in the collection in an easier to read way
     
-    
+//Full List of mongoDB shell commands here:
+    //https://docs.mongodb.com/manual/reference/mongo-shell/
+
+    //'show collections' - print list of collections for current database
+
+//MongoDB Drivers
+    //Working in the shell is programming language agnostic, so we work in the shell for most of the course
+    //Near the end of course, we will build a small node.js application to demonstrate how we move from shell to driver
+
+    //Drivers are bridges between your programming language and the mongoDB server
+    //Full list of programming languages and their respective drivers here:
+        //https://docs.mongodb.com/drivers/
+
+
+//Application Layer (e.g. Node Application)
+    //1. Frontend (UI)
+        //Mobile App/single page app/views(ejs)/ etc
+    //2. Backend (Server)
+        //Express,
+
+        //Drivers (for Node.js/Python/Java etc)
+            //Drivers communicate/interface with the MongoDB Server
+        
+        //MongoDB Shell
+            //MongoDB Shell also communicates with MongoDB server
+                //and does the same things as the Mongodb drivers
+            //MongoDB Shell is also for playground and administration of
+                //the MongDB server
+
+//Data Layer (your database/data storage/ files on a file system)
+    //1. MongoDB Server
+        //MongoDB Server does not directly write data into files
+            //but will talk to a storage engine
+            //The default storage engine for Mongodb is 'Wired Tiger'
+
+            //So your mongodb server gets the query from your mongodb driver
+                //or your mongodb shell
+                //and then forwards that query to the storage engine
+                //Storage engine then stores the files
+
+    //2. Storage Engine ('Wired Tiger')
+        //Storage engine manages your data and stores it in files
+
+
+    //3. File System - Storage engine interacts with the file system
+        //File system may store stuff in memory first beacuse it is faster
+            //before moving it into files
+
+        //Read + Write Data to Files (slow)
+
+        //Read + Write Data in Memory (fast)
