@@ -91,3 +91,27 @@
         //Serverless functions - allow you to execute code in the cloud on demand
     
     //In this course, we will use the MongoDB locally and in the cloud
+
+
+//Download binary/msi installer from mongodb website
+    //Install using custom settings
+    //Do not install mongodb compass because it will hang on install
+    //Choose where to install your mongodb
+    //Create a folder called 'data' and inside that create a folder called 'db'
+    //For windows, type 'environment' in your search
+    //Open up 'Edit Environment Variables"
+    //Select 'path' in the user variables
+    //Add the file path to your bin directory in your mongodb installation
+        //Should be something like: C:\Program Files\MongoDB\Server\4.2\bin
+    //In your terminal, type 'mongodb'
+    //If stuff happens, you should successfully install your mongodb
+    //Ctrl + C to exit your mongodb
+    //Then type 'mongod' to restart your mongodb
+    //If it doesn't work type: mongod --dbpath "C:\data\db"
+        //Or whatever your path to the 'db' folder you set up is
+    //When you startup your database, you have to run that command:
+        //mongod --dbpath "C:\data\db"
+    //Then open another terminal window and type 'mongo' to connect to your database
+    //You are now in the mongo shell which is the environment where you can run commands
+        //against your database
+        //Here in the shell, you can create new databases, new collection, new documents
