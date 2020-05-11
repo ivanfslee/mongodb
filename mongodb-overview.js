@@ -115,3 +115,34 @@
     //You are now in the mongo shell which is the environment where you can run commands
         //against your database
         //Here in the shell, you can create new databases, new collection, new documents
+
+//Mongodb commands:
+    //'cls' - clears screen
+    //'show dbs' - show existing databases
+        //You start off with 3 default dbs - admin/config/local
+        //that store some metadata
+    //'use <db name>' - connect to db , 'db name'
+        //if it doesn't exist, it will be created
+    //'db.<name of collection>.insertOne({<json data here>})' - create collection and document
+        //If collection doesn't exist, it will be created
+        //'db' refers to the database you are currently in
+
+        //e.g. Here, we insert a document into the 'products' collection in 'shop' database
+            //db.products.insertOne({name: "A Book", price: 12.99})
+        
+        //The keys like, 'name' and 'price' don't have to be surrounded by 
+            //quotation marks.
+            // Though behind the scenes, when it is stored in the database, 
+            //there will be double quotes.
+            //The value, like 'A Book' must be surrounded by double quotes
+                //because it is a string
+        
+        //If your document is successfully added, you will get an 'acknowledged':true and 'insertedId'
+            //This confirms that the data was inserted into the db
+            //and mongodb automatically generated a unique ID for the insertion
+    //'db.<name of collection>.find()'
+        //This will give you all data in the collecion
+    //'db.<name of collection>.find().pretty()'
+        //Outputs all the data in the collection in an easier to read way
+    
+    
