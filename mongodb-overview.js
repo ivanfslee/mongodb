@@ -123,7 +123,7 @@
         //that store some metadata
     //'use <db name>' - connect to db , 'db name'
         //if it doesn't exist, it will be created
-    //'db.<name of collection>.insertOne({<json data here>})' - create collection and document
+    //'db.<name of collection>.insertOne({<json data - key: value - here>})' - create collection and document
         //If collection doesn't exist, it will be created
         //'db' refers to the database you are currently in
 
@@ -196,3 +196,26 @@
         //Read + Write Data to Files (slow)
 
         //Read + Write Data in Memory (fast)
+
+//Course Overview
+    //Part 1 - Module 1 - 5
+        //Introduction
+        //Basics & Basic CRUD
+        //Data Schema & Relations
+        //Working with the Shell
+        //Using Compass
+    //Part 2 - Module 6 - 9
+        //CRUD Deep Dive - Create
+        //CRUD Deep Dive - Read
+        //CRUD Deep Dive - Update
+        //CRUD Deep Dive - Delete
+    //Part 3 - Module 10 - 19
+        //Using Indexes
+        //Working with Geospatial Data
+        //The Aggregation Framework
+        //Working with Numeric Data
+        //Security & Authentication
+        //Performance, Fault Tolerance & Deployment
+        //Transactions
+        //From Shell to Drivers (create a node and react app)
+        //MongoDB Stitch
