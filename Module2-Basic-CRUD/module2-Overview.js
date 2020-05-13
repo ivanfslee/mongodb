@@ -8,7 +8,7 @@
 //Start up mongodb server
     // mongod --dbpath "C:\data\db"
     // If you want to use a different port (the default is 27017)
-        //type 'mongod --dbpath "C:\data\db" --port <some other port number>'
+        //type 'mongod --dbpath "L:\data\db" --port <some other port number>'
 
 //Connect with mongodb server
     //Type 'mongo'
@@ -66,3 +66,58 @@
         
 //To display all documents in a collection:
     //db.<collection name>.find().pretty()
+
+/*
+JSON vs. BSON
+
+    Mongo does not use JSON but it uses BSON to store data in database
+
+    BSON = Binary JSON
+
+    But we pretty much write JSON code
+
+    JSON is also what we see when we retrieve data from mongoDB
+
+    Behind the scenes/under the hood MongoDB actually uses BSON data
+
+    JSON -> MongoDB Drivers -> Binary Data
+
+    The conversion is done by the MongoDB Drivers
+
+    It takes your JSON code and stores it in binary data.
+
+    This is done because it is more efficient to store than JSON data.
+        So it is fast and more efficient.
+
+    BSON also supports additional types. 
+        e.g. ObjectId type
+    
+    ObjectId data type is not normal, valid JSON
+
+    The ObjectId data type is not valid JSON, but mongoDB 
+        can take it and store it in its binary data
+    
+    BSON also support multiple different number types
+        e.g. decimals, very large numbers
+
+    So BSON allows you additional data types (ObjectId, number types, etc)
+        and more efficient storage than JSON
+    
+    We write JSON when inserting a document into the DB, but behind the scenes, it is BSON.
+
+    The Key names don't need to be wrapped in double quotes.
+    The double quotes will be added in.
+
+    Your documents in the same collection can have different Keys.
+
+    That is, documents in a collection can have entirely different structures (schema).
+
+    Often, you will have some overlap in different documents in a collection, 
+        but it is not a must in mongoDB.
+    
+    Note: You can assign the ObjectId and its value on your own. So long as the _id value is unique.
+        e.g. db.flightData.insertOne({deoartureAirport: "TXL", arrivalsAirport: "LHRU", "_id": "txl-lhr-1" })
+
+    If you try to use the same ObjectId value again, you will get a duplicate key error.
+
+*/
