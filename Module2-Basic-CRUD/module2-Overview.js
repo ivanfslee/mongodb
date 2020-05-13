@@ -120,4 +120,70 @@ JSON vs. BSON
 
     If you try to use the same ObjectId value again, you will get a duplicate key error.
 
+
+CRUD Operations- Overview
+    Core CRUD operations 
+
+        In the end, these 4 operations (CRUD) are the 
+        only thing you do with your data.
+
+    You can use MongoDB for a variety of use cases:
+        Application
+        Analytics/BI Tools
+        Database Admin
+
+
+        Application
+            You might have an app, a mobile app or website,
+            where the user interacts with your code.
+
+            And your code uses its appropriate MongoDB driver (e.g. Node, c++, python, etc)
+
+            You need to be able to Create/Read/Update/Delete documents
+
+        Analytics/BI Tools
+            You might get some data given to you, shipped as one file,
+            and you need to run analytics on it.
+
+            BI = business intelligence connector - mongo offers you this
+
+            Or you might use the shell 
+
+            You need to be able to Read the data
+
+        Admin
+            You are a Database Administrator
+
+            You will work with the shell
+
+            You need to be able to Create/Read/Update/Delete data
+
+The following operations are all directly executed on a collection:
+
+    Create Operations
+        insertOne(data, options)
+        
+        insertMany(data, options)
+
+    Read Operations
+        find(filter, options)
+        
+        Note: filter allows you to narrow down the data set
+
+        findOne(filter, options)
+
+        find - finds all matching documents
+        findONe - finds the first matching document
+
+    Update Operations
+        updateOne(filter, data, options)
+
+        updateMany(filter, data, options)
+
+        replaceOne(filter, data, options)
+
+    Delete Operations
+        deleteOne(filter, options)
+
+        deleteMany(filter, options)
 */
