@@ -116,7 +116,7 @@ JSON vs. BSON
         but it is not a must in mongoDB.
     
     Note: You can assign the ObjectId and its value on your own. So long as the _id value is unique.
-        e.g. db.flightData.insertOne({deoartureAirport: "TXL", arrivalsAirport: "LHRU", "_id": "txl-lhr-1" })
+        e.g. db.flightData.insertOne({departureAirport: "TXL", arrivalsAirport: "LHRU", "_id": "txl-lhr-1" })
 
     If you try to use the same ObjectId value again, you will get a duplicate key error.
 
@@ -158,32 +158,187 @@ CRUD Operations- Overview
 
             You need to be able to Create/Read/Update/Delete data
 
+Assigning an "_id" manually:
+
+Note: You can assign the ObjectId and its value on your own. So long as the _id value is unique.
+        e.g. db.flightData.insertOne({departureAirport: "TXL", arrivalsAirport: "LHRU", "_id": "txl-lhr-1" })
+
 The following operations are all directly executed on a collection:
 
     Create Operations
-        insertOne(data, options)
+        1. insertOne(data, options)
         
-        insertMany(data, options)
+        2. insertMany(data, options)
 
     Read Operations
-        find(filter, options)
+        1. find(filter, options)
         
         Note: filter allows you to narrow down the data set
 
-        findOne(filter, options)
+        2. findOne(filter, options)
 
         find - finds all matching documents
         findONe - finds the first matching document
 
     Update Operations
-        updateOne(filter, data, options)
+        1. updateOne(filter, data, options)
 
-        updateMany(filter, data, options)
+        2. updateMany(filter, data, options)
 
-        replaceOne(filter, data, options)
+        3. replaceOne(filter, data, options)
 
     Delete Operations
-        deleteOne(filter, options)
+        1. deleteOne(filter, options)
 
-        deleteMany(filter, options)
+        2. deleteMany(filter, options)
+
+Let's say your database has a collection called 'flightData'
+    and it has the following documents:
+
+db.flightData.find().pretty()
+{
+    "_id": ObjectId("5b97827de62da95ae64206a8"),
+    "departureAirport": "MUC",
+    "arrivalAirport": "SFO",
+    "aircraft": "Airbus A380",
+    "distance": 12000,
+    "intercontinental": true
+}
+{
+    "_id": ObjectId("5b9783d7e62da95ae64206a9"),
+    "departureAirport": "TXL",
+    "arrivalAirport": "LHR"
+}
+{
+    "_id": "txl-lhr-1",
+    "departureAirport": "TXL",
+    "arrivalAirport": "LHR"
+}
+
+To delete one document in a collection:
+    Note: These commands act on a collection
+
+    filter is the first argument in the deleteOne method - 
+    filter is a document
+
+    In a filters simplest form, we 
+    define a key and value we want to delete
+    
+        db.flightData.deleteOne({"departureAirport": "TXL"})
+
+    So, this will delete the FIRST document that has "departureAirport": "TXL" as a key/value pair
+
+    If the deletion works, mongoDB should return:
+
+        { "acknowledged" : true, "deletedCount" : 1}
+
+
+To delete many documents, you need to have documents that have key/values in common.
+    
+    Whenever you see '$' in mongodb, that indicates a reserved key word operator
+
+    Let's select a document and add a property to it:
+
+    db.flightData.updateOne({distance: 12000}, {$set: {marker: "delete"}})
+
+    So this will select the FIRST document with {distance: 12000} property
+    and set/add another property {marker: "delete"} into that document.
+
+    If document already has a 'marker' property. It will change the value to 'delete'.
+    If document does not have 'marker' property. It will add {marker: "delete"}.
+
+    So after updateOne(), this document:
+    {
+        "_id": ObjectId("5b97827de62da95ae64206a8"),
+        "departureAirport": "MUC",
+        "arrivalAirport": "SFO",
+        "aircraft": "Airbus A380",
+        "distance": 12000,
+        "intercontinental": true
+    }
+
+    Becomes:
+    {
+        "_id": ObjectId("5b97827de62da95ae64206a8"),
+        "departureAirport": "MUC",
+        "arrivalAirport": "SFO",
+        "aircraft": "Airbus A380",
+        "distance": 12000,
+        "intercontinental": true
+        "marker": "delete"
+    }
+
+    If successful, mongoDB returns:
+
+    { "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1}
+
+
+If your filter value is '{}' , an empty set of braces, that means select all documents. 
+
+    db.flightData.updateMany({}, {$set: {marker: "toDelete"}})
+
+    So, this will select all documents with the '{}' in the filter argument.
+    And will set a new prop, {marker: 'toDelete'} for all documents. 
+
+
+To delete all documents in a collection:
+
+    db.flightData.deleteMany({})
+
+To delete documents that have a certain property:
+
+    db.flightData.deletemany({marker: "toDelete"})
+
+To add multiple documents to a collection:
+
+    You need to have an array data structure with each element in the array, a document.
+    Here, we add two documents to our flightData collection.
+
+        [
+            {
+                "departureAirport": "MUC",
+                "arrivalAirport": "SFO",
+                "aircraft": "Airbus A380",
+                "distance": 12000,
+                "intercontinental": true
+            },
+            {
+                "departureAirport": "LHR",
+                "arrivalAirport": "TXL",
+                "aircraft": "Airbus A320",
+                "distance": 950,
+                "intercontinental": false
+            }
+        ]
+    
+    To insert multiple documents, you pass the array of documents in the insertMany() method:
+
+    db.flightData.insertMany([
+            {
+                "departureAirport": "MUC",
+                "arrivalAirport": "SFO",
+                "aircraft": "Airbus A380",
+                "distance": 12000,
+                "intercontinental": true
+            },
+            {
+                "departureAirport": "LHR",
+                "arrivalAirport": "TXL",
+                "aircraft": "Airbus A320",
+                "distance": 950,
+                "intercontinental": false
+            }
+        ])
+    
+    If the insertion was successful, mongoDB will add ObjectId's and will return:
+
+    {
+        "acknowledged" : true,
+        "insertIds" : [
+            ObjectId("2934239473927sdjkhfs"),
+            ObjectId("sldjf2384202kfsdjlf2")
+        ]
+    }
+
+    MongoDB inserts the documents the same order as in the array that was passed in. 
 */
