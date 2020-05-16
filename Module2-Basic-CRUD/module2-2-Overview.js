@@ -45,7 +45,7 @@ Update a flight
     This results in:
 
         {   
-            "_id": ObjectId("12134j2h3k4j2h4k3"),
+            "_id": ObjectId("sldjfsdlfj"),
             "departureAirport": "MUC",
             "arrivalAirport": "SFO",
             "aircraft": "Airbus A380",
@@ -72,24 +72,27 @@ update vs updateMany vs updateOne vs replaceOne?
         The result of this is that the document will be just {delayed: true}
 
             {
-                "_id": ObjectId("2304u29342jk34h234"),
+                "_id": ObjectId("sldjfsdlfj"),
                 "delayed": true
             }
   
-    updateOne and updateMany REQUIRE you use '$set'.
+    updateOne() and updateMany() REQUIRE you use '$set'.
     Without '$set', it will return an error.
-    When '$set' is included, it will append the property to the rest of the document.
+    When '$set' is included, it will APPEND the property to the rest of the document.
 
 
     Summary:
 
-    'update' without '$set' will replace the entire document with object you pass in
-    'replaceOne' will replace the entire document with the object passed in. replaceOne doesn't require a '$set' since it it replacing the entire document.
+    'update' without '$set' will replace the entire document with the object you pass in.
+    'replaceOne' will replace the entire document with the object passed in. 
+    replaceOne() doesn't require a '$set' since it it replacing the entire document.
     
     'update' with '$set' appends the existing document with the object passed in.
-        So this will act like updateOne() and updateMany(), which require a '$set'        
+        So this will act like updateOne() and updateMany(), which require a '$set'
 
     If you want to replace the entire document, you should use 'replaceOne()'
-    If you want to partially change a document, use 'updateOne()' or 'updateMany()' (these will require you use $set)
+    
+    If you want to partially change a document, use 'updateOne()' or 'updateMany()' 
+        (these will require you use $set)
     
 */
