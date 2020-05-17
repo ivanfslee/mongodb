@@ -65,4 +65,26 @@ Projection Syntax
     
     You don't get unecessary data and any data that you don't want.
         You don't impact your bandwidth. 
+
+Embedded Documents
+
+    Documents where a property/field's value is another document.
+
+    These documents can further have other sub documents.
+
+    Basically, you can nest your documents into one document.
+
+    You can have up to 100 levels of nesting in mongoDB.
+
+    Typically, you rarely need more than 3-4 levels of nesting.
+    
+    The other hard limit is that the document size must be below
+        16 megabytes.
+
+    You only store text in mongoDB.
+        You don't store files in mongoDB.
+    
+    Another kind of data you can store are arrays.
+        You can have arrays of embedded documents.
+        But arrays can hold any data.
 */
