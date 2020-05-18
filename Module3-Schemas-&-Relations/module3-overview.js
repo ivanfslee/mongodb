@@ -68,11 +68,4 @@ Structuring Documents
     
     There is no convention here. Use whichever approach you prefer.
     
-Data Type
-
-    'double' number type is a number with decimals - e.g. 12.99
-    'integer' number type is a number without decimals - e.g. 12
-
-    'null' data type - value you can assign to indicate there is 
-        no value but there is a field there.
 */
