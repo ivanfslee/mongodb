@@ -109,6 +109,14 @@ db.stats() command
     
     When we put in a number into mongodb, it will store as
         a 64bit floating point number by default.
+    
+    This will add a document with key 'a' with a value of 1.
+
+        db.numbers.insertOne({a: 1})
+    
+    The '1' will be a 64bit number. 
+        If we add {a:1} using method NumberInt() method,
+        it will add '1' as a 32bit number instead.
 
     If you use NumberInt() method - 
     
@@ -118,14 +126,25 @@ db.stats() command
 
     And int32 values take up less space than int64 values.
 
-    Note: JavaScript doesn't differentiate between integers and floats
+    So this is a use case to using MongoDB's special methods to 
+        add values to manage your db size and data.
 
+    Note: JavaScript doesn't differentiate between integers and floats
+        And the mongo shell is based on javascript.
+
+        So by default, mongo stores numbers as 64bit floating point numbers
+            because JS doesn't differentiate between integers and floats.
+            and the mongo shell is based on JavaScript.
+        
+        Other programming languages may treat integers and floating points
+            differently, so it may depend on the different drivers you 
+            are using.
 
 Check the type of a value stored in MongoDB using 'typeof'
 
-        typeof db.numbers.findOne().a     //access the 'a' key
+        typeof db.numbers.findOne().a     //access the 'a' key defined on like 115
 
-    This returns:  'number'
+    This returns:  'number' because it is a number data type
 
 BSON types Documentation
 
