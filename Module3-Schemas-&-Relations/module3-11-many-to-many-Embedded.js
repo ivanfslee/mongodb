@@ -168,6 +168,7 @@ A disadvantage of this approach is data duplication.
             "title" : "A Book",
             "price" : 12.99
         }
+        
 The fields of the 'title' and 'price' in the products
     collection matches whats included in the 
     customers collection.
@@ -180,6 +181,7 @@ And this same customer may order the same product again
 And if you need to change the data of the book product itself,
     you have to change it in all the instances that it shows 
     up in.
+
     But in this case, we may not care if the book data changes.
     For example, if the price of the book changes, we don't care
     about changing the price of the book in the orders array.
