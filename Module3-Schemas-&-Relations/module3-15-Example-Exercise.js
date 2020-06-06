@@ -65,15 +65,22 @@ My Data Schema for a Blog
                         {
                             postId: 'post1',
                             title: 'hello world',
-                            body: 'aloha world'
+                            body: 'aloha world',
+                            comments: []
                         },
                         {
                             postId: 'post2',
                             title: 'vaccay',
-                            body: 'going on vacation'
+                            body: 'going on vacation',
+                            comments: []
                         }
                     ]
                 }
+
+
+        The alternative is to have separate 'Users' and 'Posts' collections.
+            The 'Users' collection documents would have an array of 'postId's
+            that reference a post document in the 'Posts' collection.
 
         References Blog Schema
 
@@ -90,11 +97,13 @@ My Data Schema for a Blog
                 {
                     postId: 'post1',
                     title: 'hello world',
-                    body: 'aloha world'
+                    body: 'aloha world',
+                    comments: []
                 },
                 {
                     postId: 'post2',
                     title: 'vaccay',
-                    body: 'going on vacation'
+                    body: 'going on vacation',
+                    comments: []
                 }
 */
