@@ -53,6 +53,8 @@ My Data Schema for a Blog
             that would contain an array of documents
             where each document is a blog post
 
+            as well as comments in an array embedded in the posts
+
 
         Embedded Blog Schema
         
@@ -66,7 +68,7 @@ My Data Schema for a Blog
                             postId: 'post1',
                             title: 'hello world',
                             body: 'aloha world',
-                            comments: []
+                            comments: ['coolio', 'welcome!']
                         },
                         {
                             postId: 'post2',
@@ -98,7 +100,7 @@ My Data Schema for a Blog
                     postId: 'post1',
                     title: 'hello world',
                     body: 'aloha world',
-                    comments: []
+                    comments: ['aloha!', 'welcome']
                 },
                 {
                     postId: 'post2',
@@ -106,4 +108,45 @@ My Data Schema for a Blog
                     body: 'going on vacation',
                     comments: []
                 }
+
+
+Max's Data Schema for a Blog
+
+    For a single blog we at least have 3 data entities:
+        User
+        Post
+        Comment
+
+    What kind of data does a 'User' consist of?
+    What kind of data does a 'Post' consist of?
+    What kind of data does a 'Comment' consist of?
+    
+    The all have an '_id' value assigned by mongoDB.
+
+    User
+        _id
+        name
+        age
+        email
+
+    Post
+        _id
+        title
+        text
+        tags
+
+    Comment
+        _id
+        user
+        text
+    
+    How are these 3 entities related?
+        User can create a post
+        User can comment on a post
+        
+        So a post can have multiple comments
+            where each comment also knows which
+            user created the comment.
+
+
 */
