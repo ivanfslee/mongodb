@@ -84,6 +84,9 @@ My Data Schema for a Blog
             The 'Users' collection documents would have an array of 'postId's
             that reference a post document in the 'Posts' collection.
 
+        Sometimes, you want just the User data, without the posts data, 
+            so we separate them out into separate collections.
+
         References Blog Schema
 
             Users Collection 
@@ -148,5 +151,54 @@ Max's Data Schema for a Blog
             where each comment also knows which
             user created the comment.
 
+How do we model these entities?
 
+    We could embed everything, we could go with one collection only.
+
+    For instance - a single 'post' collection
+
+        Post Collection
+
+            Single Post document will have the following fields:
+                It will have embedded user document and comments document.
+                User document is an embedded document.
+                comments document is an array of nested comment documents.
+
+
+            {
+                _id,
+                title,
+                text,
+                tags,
+                user: {...},
+                comments: [{...}, {...}]
+            }
+
+    Is this single 'post' collection a good approach?
+        
+        It's fine to embed the comments becase the comments 
+            are a one-to-many relationship.
+            One post has many comments.
+            One comment belongs to one post.
+
+        A post also typically doesn't have millions of comments
+            so we probably won't reach the mongodb 16mb document size limit.
+            
+        We also typically want to fetch a post along with its comments.
+        So nesting the comments should be fine.
+
+        Nesting the user doesn't seem great.
+        If we do nest user data, one user can create many posts.
+            So if user data changes, for example - email of the user changes,
+            then we have to edit ALL user documents embedded in the posts.
+
+            The user's email might not change on a daily basis, but it is
+            duplicate data that we will have to change. 
+        
+    Max's final solution is creating two collections:
+
+        1. User collection
+
+        2. Post Collection
+            Comments embedded in post
 */
