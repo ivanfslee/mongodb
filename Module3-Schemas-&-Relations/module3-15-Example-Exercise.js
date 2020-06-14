@@ -101,12 +101,23 @@ My Data Schema for a Blog
 
                 {
                     postId: 'post1',
+                    author: '23423l4j23kl4j23',
                     title: 'hello world',
                     body: 'aloha world',
-                    comments: ['aloha!', 'welcome']
+                    comments: [
+                        {
+                            commenter: '3425234k5h2k34'
+                            comment: 'aloha!'
+                        }, 
+                        {
+                            commenter: '23k4h23kj4h23k4'
+                            comment: 'welcome'
+                        }
+                    ]
                 },
                 {
                     postId: 'post2',
+                    author: '23423l4j23kl4j23',
                     title: 'vaccay',
                     body: 'going on vacation',
                     comments: []
